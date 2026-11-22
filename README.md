@@ -1,4 +1,6 @@
-# Blokbay crypto payments for Magento 2
+# Magento 2 / Adobe Commerce Crypto Payment Gateway: Bitcoin, USDT, USDC, ETH (Blokbay)
+
+Accept crypto payments in Magento 2 / Adobe Commerce: Bitcoin (BTC), Tether (USDT), USD Coin (USDC) and Ether (ETH) on Ethereum, BNB Smart Chain (BSC), Polygon, Base and Arbitrum. Non-custodial: every payment goes straight to your own wallet. 1% per payment, no monthly fee. Download the latest release: [Releases](../../releases/latest).
 
 Non-custodial crypto payment module for Magento 2 / Adobe Commerce: Bitcoin, USDC, USDT and ETH straight to your wallet.
 
