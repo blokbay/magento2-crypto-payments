@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright Blokbay. Licensed under the MIT License, see LICENSE.txt.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <blokbay>
+                <active>0</active>
+                <model>Blokbay\Payment\Model\Blokbay</model>
+                <title>Pay with crypto</title>
+                <order_status>pending_payment</order_status>
+                <payment_action>order</payment_action>
+                <allowspecific>0</allowspecific>
+                <currency>USD</currency>
+                <base_url>https://blokbay.com</base_url>
+                <secret_key backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>
+                <webhook_secret backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>
+                <group>offline</group>
+            </blokbay>
+        </payment>
+    </default>
+</config>

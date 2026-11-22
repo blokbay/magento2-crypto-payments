@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright Blokbay. Licensed under the MIT License, see LICENSE.txt.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment">
+            <group id="blokbay" translate="label comment" sortOrder="90" showInDefault="1" showInWebsite="1"
+                   showInStore="0">
+                <label>Crypto (Blokbay)</label>
+                <comment>Webhook URL to set in Blokbay: https://your-store/blokbay/webhook/index</comment>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1"
+                       showInWebsite="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1">
+                    <label>Title</label>
+                </field>
+                <field id="secret_key" translate="label" type="obscure" sortOrder="3" showInDefault="1"
+                       showInWebsite="1">
+                    <label>Secret key (sk_live_...)</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="public_key" translate="label" type="text" sortOrder="4" showInDefault="1"
+                       showInWebsite="1">
+                    <label>Public key (pk_live_...)</label>
+                </field>
+                <field id="webhook_secret" translate="label" type="obscure" sortOrder="5" showInDefault="1"
+                       showInWebsite="1">
+                    <label>Webhook signing secret (whsec_...)</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="base_url" translate="label comment" type="text" sortOrder="6" showInDefault="1">
+                    <label>API address</label>
+                    <comment>Leave as it is.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
