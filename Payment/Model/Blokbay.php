@@ -54,14 +54,14 @@ class Blokbay extends AbstractMethod
     }
 
     /**
-     * Blokbay amounts are in US dollars.
+     * Currencies accepted by Blokbay: USD, EUR, GBP, CHF, JPY, CAD, AUD, SGD, HKD, AED (crypto at the current exchange rate).
      *
      * @param string $currencyCode
      * @return bool
      */
     public function canUseForCurrency($currencyCode)
     {
-        return $currencyCode === 'USD';
+        return Api::supported($currencyCode);
     }
 
     /**

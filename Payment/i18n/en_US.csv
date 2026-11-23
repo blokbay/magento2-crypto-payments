@@ -14,3 +14,6 @@
 "Blokbay: the crypto payment was not made in time.","Blokbay: the crypto payment was not made in time."
 "Blokbay: amount does not match the order, check it in the Blokbay dashboard.","Blokbay: amount does not match the order, check it in the Blokbay dashboard."
 "Blokbay: paid in %1 on %2. Transaction %3","Blokbay: paid in %1 on %2. Transaction %3"
+"Blokbay: payment received but the order cannot be invoiced, check it in the Blokbay dashboard.","Blokbay: payment received but the order cannot be invoiced, check it in the Blokbay dashboard."
+"Blokbay: the payment arrived after the order was cancelled. The order has been reopened: check the stock.","Blokbay: the payment arrived after the order was cancelled. The order has been reopened: check the stock."
+"Crypto (Blokbay): Blokbay accepts prices in %1. Your store currency %2 is not accepted, so the payment method stays hidden at checkout.","Crypto (Blokbay): Blokbay accepts prices in %1. Your store currency %2 is not accepted, so the payment method stays hidden at checkout."

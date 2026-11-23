@@ -84,14 +84,31 @@ class Api
     }
 
     /**
-     * USD amount with 2 decimals, as a string ("249.90").
+     * Currencies accepted by the Blokbay API, with their decimals (JPY has none). The buyer pays in crypto at the current
+     * exchange rate; amount and currency come back in the payment and in webhooks exactly as sent.
+     */
+    public const CURRENCIES = ['USD' => 2, 'EUR' => 2, 'GBP' => 2, 'CHF' => 2, 'JPY' => 0, 'CAD' => 2, 'AUD' => 2, 'SGD' => 2, 'HKD' => 2, 'AED' => 2];
+
+    /**
+     * @param string|null $currency
+     * @return bool
+     */
+    public static function supported($currency): bool
+    {
+        return isset(self::CURRENCIES[strtoupper((string) $currency)]);
+    }
+
+    /**
+     * Amount with the decimals of the currency, as a string ("249.90", JPY "25000").
      *
      * @param float|string|null $value
+     * @param string $currency
      * @return string
      */
-    public function amount($value): string
+    public function amount($value, string $currency = 'USD'): string
     {
-        return number_format(round((float) $value, 2), 2, '.', '');
+        $dec = self::CURRENCIES[strtoupper($currency)] ?? 2;
+        return number_format(round((float) $value, $dec), $dec, '.', '');
     }
 
     /**
@@ -105,11 +122,12 @@ class Api
      * @param string $amount
      * @return string
      */
-    public function idempotencyKey(string $storeUrl, string $incrementId, string $createdAt, string $amount): string
+    public function idempotencyKey(string $storeUrl, string $incrementId, string $createdAt, string $amount, string $currency = 'USD'): string
     {
         $store = substr(hash('sha256', strtolower(rtrim($storeUrl, '/'))), 0, 16);
         $created = preg_replace('/\D/', '', $createdAt);
-        return substr('mg-' . $store . '-' . $incrementId . '-' . $created . '-' . $amount, 0, 100);
+        $cur = strtoupper($currency);
+        return substr('mg-' . $store . '-' . $incrementId . '-' . $created . '-' . $amount . ($cur === 'USD' ? '' : '-' . $cur), 0, 100);
     }
 
     /**
@@ -120,11 +138,11 @@ class Api
      * @param string $amount
      * @return bool
      */
-    public function matchesOrder(array $payment, string $reference, string $amount): bool
+    public function matchesOrder(array $payment, string $reference, string $amount, string $currency = 'USD'): bool
     {
         return (string) ($payment['reference'] ?? '') === $reference
             && (string) ($payment['amount'] ?? '') === $amount
-            && ($payment['currency'] ?? '') === 'USD';
+            && ($payment['currency'] ?? '') === strtoupper($currency);
     }
 
     /**

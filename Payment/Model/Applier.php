@@ -123,18 +123,54 @@ class Applier
      * @param array $payment
      * @return string
      */
+    /**
+     * Undo the cancellation of an order whose payment arrived late: cancelled quantities and totals back to zero,
+     * state back to pending payment. Stock that was returned on cancellation is not reserved again: the comment says so.
+     */
+    private function reopen(Order $order): void
+    {
+        foreach ($order->getAllItems() as $item) {
+            $item->setQtyCanceled(0);
+            $item->setTaxCanceled(0);
+            $item->setDiscountTaxCompensationCanceled(0);
+        }
+        $order->setSubtotalCanceled(0)->setBaseSubtotalCanceled(0)
+            ->setTaxCanceled(0)->setBaseTaxCanceled(0)
+            ->setShippingCanceled(0)->setBaseShippingCanceled(0)
+            ->setDiscountCanceled(0)->setBaseDiscountCanceled(0)
+            ->setTotalCanceled(0)->setBaseTotalCanceled(0);
+        $order->setState(Order::STATE_PENDING_PAYMENT)->setStatus(Order::STATE_PENDING_PAYMENT);
+        $order->addCommentToStatusHistory(
+            __('Blokbay: the payment arrived after the order was cancelled. The order has been reopened: check the stock.')
+                ->render()
+        );
+    }
+
     private function paid(Order $order, array $payment): string
     {
-        $sameAmount = $this->api->amount($order->getGrandTotal()) === ($payment['amount'] ?? '');
-        if (!$sameAmount || ($payment['currency'] ?? '') !== 'USD' || $order->getOrderCurrencyCode() !== 'USD') {
+        $currency = strtoupper((string) $order->getOrderCurrencyCode());
+        $sameAmount = $this->api->amount($order->getGrandTotal(), $currency) === (string) ($payment['amount'] ?? '');
+        if (!$sameAmount || ($payment['currency'] ?? '') !== $currency || !Api::supported($currency)) {
             $order->addCommentToStatusHistory(
                 __('Blokbay: amount does not match the order, check it in the Blokbay dashboard.')->render()
             );
             $this->orders->save($order);
             return 'amount mismatch';
         }
-        if ($order->getTotalPaid() >= $order->getGrandTotal() || !$order->canInvoice()) {
+        if ($order->getTotalPaid() >= $order->getGrandTotal()) {
             return 'already paid';
+        }
+        // A payment can arrive after payment.expired (for example a late second Bitcoin transfer): the funds are already
+        // in the merchant's wallet, so a cancelled order is reopened and then invoiced.
+        if ($order->isCanceled()) {
+            $this->reopen($order);
+        }
+        if (!$order->canInvoice()) {
+            $order->addCommentToStatusHistory(
+                __('Blokbay: payment received but the order cannot be invoiced, check it in the Blokbay dashboard.')->render()
+            );
+            $this->orders->save($order);
+            return 'paid, check the order';
         }
         $tx = (string) ($payment['tx'] ?? '');
         $invoice = $this->invoices->prepareInvoice($order);

@@ -14,3 +14,6 @@
 "Blokbay: the crypto payment was not made in time.","Blokbay: il pagamento in crypto non è arrivato in tempo."
 "Blokbay: amount does not match the order, check it in the Blokbay dashboard.","Blokbay: l'importo non corrisponde all'ordine, controllalo nel pannello Blokbay."
 "Blokbay: paid in %1 on %2. Transaction %3","Blokbay: pagato in %1 su %2. Transazione %3"
+"Blokbay: payment received but the order cannot be invoiced, check it in the Blokbay dashboard.","Blokbay: pagamento ricevuto ma l'ordine non si può fatturare, controllalo nel pannello Blokbay."
+"Blokbay: the payment arrived after the order was cancelled. The order has been reopened: check the stock.","Blokbay: il pagamento è arrivato dopo l'annullamento dell'ordine. L'ordine è stato riaperto: controlla le scorte."
+"Crypto (Blokbay): Blokbay accepts prices in %1. Your store currency %2 is not accepted, so the payment method stays hidden at checkout.","Crypto (Blokbay): Blokbay accetta prezzi in %1. La valuta del negozio %2 non è accettata, quindi il metodo di pagamento resta nascosto alla cassa."

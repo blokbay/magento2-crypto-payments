@@ -11,7 +11,7 @@
             <group id="blokbay" translate="label comment" sortOrder="90" showInDefault="1" showInWebsite="1"
                    showInStore="0">
                 <label>Crypto (Blokbay)</label>
-                <comment>Webhook URL to set in Blokbay: https://your-store/blokbay/webhook/index</comment>
+                <comment>Webhook URL to set in Blokbay: https://your-store/blokbay/webhook/index. Order currencies accepted by Blokbay: USD, EUR, GBP, CHF, JPY, CAD, AUD, SGD, HKD, AED (crypto at the current exchange rate). For other currencies the method is hidden at checkout.</comment>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1"
                        showInWebsite="1">
                     <label>Enabled</label>

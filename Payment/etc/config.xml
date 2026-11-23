@@ -15,7 +15,6 @@
                 <order_status>pending_payment</order_status>
                 <payment_action>order</payment_action>
                 <allowspecific>0</allowspecific>
-                <currency>USD</currency>
                 <base_url>https://blokbay.com</base_url>
                 <secret_key backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>
                 <webhook_secret backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>

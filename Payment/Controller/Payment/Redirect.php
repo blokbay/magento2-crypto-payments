@@ -90,10 +90,11 @@ class Redirect implements HttpGetActionInterface
             return $result->setPath('checkout/cart');
         }
         $increment = (string) $order->getIncrementId();
-        $amount = $this->api->amount($order->getGrandTotal());
+        $currency = strtoupper((string) $order->getOrderCurrencyCode());
+        $amount = $this->api->amount($order->getGrandTotal(), $currency);
         $fields = [
             'amount' => $amount,
-            'currency' => 'USD',
+            'currency' => $currency,
             'reference' => $increment,
             'description' => 'Order ' . $increment,
             'customer_email' => (string) $order->getCustomerEmail(),
@@ -104,15 +105,16 @@ class Redirect implements HttpGetActionInterface
             $this->url->getBaseUrl(),
             $increment,
             (string) $order->getCreatedAt(),
-            $amount
+            $amount,
+            $currency
         );
         $res = $this->api->createPayment($fields, $key);
-        $foreign = !empty($res['id']) && !$this->api->matchesOrder($res, $increment, $amount);
+        $foreign = !empty($res['id']) && !$this->api->matchesOrder($res, $increment, $amount, $currency);
         if ($foreign || ($res['status'] ?? '') === 'expired') {
             // Expired, or a payment of another order came back for this key: create a new one.
             $res = $this->api->createPayment($fields, substr($key, 0, 80) . '-' . time());
         }
-        $valid = !empty($res['id']) && !empty($res['url']) && $this->api->matchesOrder($res, $increment, $amount);
+        $valid = !empty($res['id']) && !empty($res['url']) && $this->api->matchesOrder($res, $increment, $amount, $currency);
         if (!$valid) {
             // The order was placed before the payment: cancel it and give the customer the cart back.
             if ($order->canCancel()) {
