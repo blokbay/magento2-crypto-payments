@@ -1,0 +1,53 @@
+{
+    "name": "blokbay/module-payment",
+    "description": "Blokbay crypto payments for Magento Open Source and Adobe Commerce: Bitcoin, USDC, USDT and ETH paid straight to the merchant's wallet, 1% per payment.",
+    "type": "magento2-module",
+    "license": "MIT",
+    "keywords": [
+        "magento",
+        "magento2",
+        "adobe commerce",
+        "magento2-module",
+        "payment",
+        "payment gateway",
+        "crypto payments",
+        "cryptocurrency",
+        "bitcoin",
+        "usdt",
+        "tether",
+        "usdc",
+        "stablecoin",
+        "ethereum",
+        "non-custodial"
+    ],
+    "homepage": "https://blokbay.com/crypto-payment-gateway",
+    "authors": [
+        {
+            "name": "Blokbay",
+            "email": "mail@blokbay.com",
+            "homepage": "https://blokbay.com"
+        }
+    ],
+    "support": {
+        "email": "mail@blokbay.com",
+        "docs": "https://blokbay.com/docs/api",
+        "source": "https://github.com/blokbay/magento2-crypto-payments"
+    },
+    "require": {
+        "php": "~8.1.0||~8.2.0||~8.3.0||~8.4.0||~8.5.0",
+        "magento/framework": "^103.0.6",
+        "magento/module-checkout": "^100.4.6",
+        "magento/module-config": "^101.2.6",
+        "magento/module-payment": "^100.4.6",
+        "magento/module-sales": "^103.0.6",
+        "magento/module-store": "^101.1.6"
+    },
+    "autoload": {
+        "files": [
+            "Payment/registration.php"
+        ],
+        "psr-4": {
+            "Blokbay\\Payment\\": "Payment/"
+        }
+    }
+}
