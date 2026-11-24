@@ -7,7 +7,7 @@
 "Webhook signing secret (whsec_...)","Segreto di firma del webhook (whsec_...)"
 "API address","Indirizzo dell'API"
 "Leave as it is.","Lascialo così."
-"BTC, USDC, USDT or ETH from your wallet. You will be redirected to the payment page.","BTC, USDC, USDT o ETH dal tuo wallet. Verrai portato alla pagina di pagamento."
+"Pay in crypto: USDT, USDC, ETH, BTC or SOL, from your wallet or an exchange. You will be redirected to the payment page.","Paga in crypto: USDT, USDC, ETH, BTC o SOL, dal tuo wallet o da un exchange. Verrai portato alla pagina di pagamento."
 "Place Order","Effettua l'ordine"
 "The crypto payment could not be created. Please try again.","Non è stato possibile creare il pagamento in crypto. Riprova."
 "Blokbay: the crypto payment could not be created (%1).","Blokbay: non è stato possibile creare il pagamento in crypto (%1)."

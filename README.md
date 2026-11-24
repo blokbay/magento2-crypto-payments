@@ -2,9 +2,9 @@
 
 Accept crypto payments in Magento 2 / Adobe Commerce: Bitcoin (BTC), Tether (USDT), USD Coin (USDC) and Ether (ETH) on Ethereum, BNB Smart Chain (BSC), Polygon, Base and Arbitrum. Non-custodial: every payment goes straight to your own wallet. 1% per payment, no monthly fee. Download the latest release: [Releases](../../releases/latest).
 
-Non-custodial crypto payment module for Magento 2 / Adobe Commerce: Bitcoin, USDC, USDT and ETH straight to your wallet.
+Non-custodial crypto payment module for Magento 2 / Adobe Commerce: USDT, USDC, ETH, BTC and SOL straight to your wallet, paid from a wallet or an exchange.
 
-- Accept Bitcoin, USDC, USDT and ETH on Ethereum, Polygon, BNB Chain, Base and Arbitrum.
+- Accept USDT and USDC on Ethereum, BNB Chain, Arbitrum, Polygon and Solana, USDC on Base, ETH on Ethereum, Base and Arbitrum, Bitcoin and SOL.
 - Non-custodial: the payment goes from the shopper's wallet straight to your own wallet through a public smart contract. Blokbay never holds your funds, so nothing can be frozen.
 - 1% per payment, withheld automatically on-chain. No monthly fee.
 - Instant start, no paperwork.

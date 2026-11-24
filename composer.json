@@ -1,6 +1,6 @@
 {
     "name": "blokbay/module-payment",
-    "description": "Blokbay crypto payments for Magento Open Source and Adobe Commerce: Bitcoin, USDC, USDT and ETH paid straight to the merchant's wallet, 1% per payment.",
+    "description": "Blokbay crypto payments for Magento Open Source and Adobe Commerce: USDT, USDC, ETH, BTC and SOL paid straight to the merchant's wallet, 1% per payment.",
     "type": "magento2-module",
     "license": "MIT",
     "keywords": [
